@@ -39,7 +39,7 @@ importers:
         specifier: ^3.2.45
         version: 3.5.13(typescript@4.9.5)
       vue-router:
-        specifier: '4'
+        specifier: ^4.5.0
         version: 4.5.0(vue@3.5.13(typescript@4.9.5))
       vue-scrollto:
         specifier: ^2.20.0
@@ -54,6 +54,9 @@ importers:
       '@types/nprogress':
         specifier: ^0.2.0
         version: 0.2.3
+      '@types/vue-router':
+        specifier: ^2.0.0
+        version: 2.0.0(vue@3.5.13(typescript@4.9.5))
       '@vitejs/plugin-vue':
         specifier: ^4.0.0
         version: 4.6.2(vite@4.5.5(@types/node@18.19.71)(less@4.2.2))(vue@3.5.13(typescript@4.9.5))
@@ -277,6 +280,10 @@ packages:
 
   '@types/nprogress@0.2.3':
     resolution: {integrity: sha512-k7kRA033QNtC+gLc4VPlfnue58CM1iQLgn1IMAU8VPHGOj7oIHPp9UlhedEnD/Gl8evoCjwkZjlBORtZ3JByUA==}
+
+  '@types/vue-router@2.0.0':
+    resolution: {integrity: sha512-E454lQ6tp9ftVWdZ8VGZpRcIV4YeqVAcx/uifl3P1GGwscYsxOFdYfgIuKasKO0Fm6Np2JM/L378D3bcRQE9hg==}
+    deprecated: This is a stub types definition for vue-router (https://github.com/vuejs/vue-router). ecmarkup provides its own type definitions, so you don\'t need @types/ecmarkup installed!
 
   '@types/web-bluetooth@0.0.16':
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
@@ -1102,6 +1109,12 @@ snapshots:
       undici-types: 5.26.5
 
   '@types/nprogress@0.2.3': {}
+
+  '@types/vue-router@2.0.0(vue@3.5.13(typescript@4.9.5))':
+    dependencies:
+      vue-router: 4.5.0(vue@3.5.13(typescript@4.9.5))
+    transitivePeerDependencies:
+      - vue
 
   '@types/web-bluetooth@0.0.16': {}
 
