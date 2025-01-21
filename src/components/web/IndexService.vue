@@ -70,98 +70,21 @@
     </div>
 </template>
 <script lang="ts" setup>
-import bigData from '@/assets/img/index/bigData.webp';
-import cloud from '@/assets/img/index/cloud.webp';
-import internet from '@/assets/img/index/internet.webp';
-import media from '@/assets/img/index/media.webp';
-import service1 from '@/assets/img/index/service1.png';
-import service2 from '@/assets/img/index/service2.png';
-import app1 from '@/assets/img/index/app1.jpg';
-import system1 from '@/assets/img/index/system1.jpg'
-import system2 from '@/assets/img/index/system2.jpg'
 import { onBeforeMount, onMounted, ref, reactive } from 'vue'
+import { capabilityList } from '@/mock/data/capability'
+import { serviceList, serviceIdeaInfo } from '@/mock/data/service'
+import { caseList } from '@/mock/data/case'
+// 删除原来的数据定义，保留图片导入
+import service1 from '@/assets/img/index/service1.png'
+import service2 from '@/assets/img/index/service2.png'
 
-interface BaseItem {
+
+interface ImgItem {
+    name: string;
     path: string;
 }
-interface ServiceItem extends BaseItem {
-    description: string;
-    detail: string;
-    icon?: string;
-}
-interface ImgItem extends BaseItem {
-    name: string;
-}
-interface CaseItem extends BaseItem {
-    desc: string;
-    tags: string[];
-    progress: number;
-}
 
-type InfoData = {
-    ideaTitle: string;
-    ideaSubTitle: string;
-    ideaDesc: string;
-}
-// const serviceList = ref<ServiceItem[]>([])
-let serviceList = reactive<ServiceItem[]>([
-    {
-        description: '数据分析与挖掘',
-        detail: '运用先进的数据分析技术，帮助企业发现数据价值，优化决策流程',
-        path: bigData,
-        icon: 'data-analysis'
-    },
-    {
-        description: 'AI智能应用',
-        detail: '提供智能算法服务，包括计算机视觉、自然语言处理等解决方案',
-        path: media,
-        icon: 'ai'
-    },
-    {
-        description: '物联网解决方案',
-        detail: '打造智能硬件生态系统，实现设备互联互通，数据实时监控',
-        path: internet,
-        icon: 'iot'
-    },
-    {
-        description: '云原生架构',
-        detail: '基于云计算技术，提供高可用、可扩展的企业级解决方案',
-        path: cloud,
-        icon: 'cloud'
-    }
-])
-let serviceIdeaInfo = reactive<InfoData>({
-    ideaTitle: '变量工坊的愿景',
-    ideaSubTitle: 'OUR VISION',
-    ideaDesc: '作为技术创新的先行者，我们致力于用科技改变生活。通过深度学习、人工智能等前沿技术，为企业提供全方位的数字化转型解决方案。我们相信，技术创新将持续推动社会进步，让生活更智能、更便捷。'
-})
 let serviceIdeaImg = reactive<ImgItem[]>([])
-let caseList = reactive<CaseItem[]>([
-    {
-        desc: '智慧城市数据平台',
-        path: app1,
-        tags: ['大数据', 'AI', '物联网'],
-        progress: 100
-    },
-    {
-        desc: '工业生产智能监控系统',
-        path: system1,
-        tags: ['工业互联网', '实时监控'],
-        progress: 85
-    },
-    {
-        desc: '智慧医疗解决方案',
-        path: app1,
-        tags: ['AI诊断', '医疗大数据'],
-        progress: 90
-    },
-    {
-        desc: '智能供应链管理平台',
-        path: system2,
-        tags: ['供应链', '区块链'],
-        progress: 95
-    }
-])
 
 onBeforeMount(() => {
     serviceIdeaImg = [
@@ -175,35 +98,6 @@ onBeforeMount(() => {
         }
     ]
 })
-
-interface CapabilityItem {
-    title: string;
-    description: string;
-    icon: string;
-}
-
-let capabilityList = reactive<CapabilityItem[]>([
-    {
-        title: '网站建设',
-        description: '专业的网站开发团队，提供响应式设计、SEO优化等全方位服务',
-        icon: 'el-icon-monitor'
-    },
-    {
-        title: '小程序开发',
-        description: '微信、支付宝等多平台小程序开发，助力企业快速布局移动端',
-        icon: 'el-icon-mobile'
-    },
-    {
-        title: '谷歌插件',
-        description: '专业的Chrome扩展开发，提供个性化浏览器功能增强解决方案',
-        icon: 'el-icon-chrome'
-    },
-    {
-        title: '解决方案',
-        description: '为企业提供完整的技术咨询和解决方案，助力数字化转型',
-        icon: 'el-icon-setting'
-    }
-])
 </script>
 <style lang="less" scoped>
 .wrap-block {
