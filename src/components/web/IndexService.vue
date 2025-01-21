@@ -8,7 +8,15 @@
                 <p class="block-subtitle">用科技创新驱动企业数字化转型</p>
             </div>
             <div class="capability-list">
-                <!-- 这里添加核心能力展示 -->
+                <div class="capability-item" v-for="(item, index) in capabilityList" :key="index">
+                    <div class="capability-card">
+                        <div class="capability-icon">
+                            <div class="icon-circle"></div>
+                        </div>
+                        <h3 class="capability-title">{{ item.title }}</h3>
+                        <p class="capability-desc">{{ item.description }}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -167,6 +175,35 @@ onBeforeMount(() => {
         }
     ]
 })
+
+interface CapabilityItem {
+    title: string;
+    description: string;
+    icon: string;
+}
+
+let capabilityList = reactive<CapabilityItem[]>([
+    {
+        title: '网站建设',
+        description: '专业的网站开发团队，提供响应式设计、SEO优化等全方位服务',
+        icon: 'el-icon-monitor'
+    },
+    {
+        title: '小程序开发',
+        description: '微信、支付宝等多平台小程序开发，助力企业快速布局移动端',
+        icon: 'el-icon-mobile'
+    },
+    {
+        title: '谷歌插件',
+        description: '专业的Chrome扩展开发，提供个性化浏览器功能增强解决方案',
+        icon: 'el-icon-chrome'
+    },
+    {
+        title: '解决方案',
+        description: '为企业提供完整的技术咨询和解决方案，助力数字化转型',
+        icon: 'el-icon-setting'
+    }
+])
 </script>
 <style lang="less" scoped>
 .wrap-block {
@@ -445,6 +482,56 @@ onBeforeMount(() => {
             font-weight: 500;
             font-size: 14px;
         }
+    }
+}
+
+.capability-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 0 40px;
+    margin-top: 40px;
+}
+
+.capability-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .capability-icon {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 16px;
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3370ff, #6695ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .capability-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #333;
+    }
+
+    .capability-desc {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.6;
     }
 }
 </style>
