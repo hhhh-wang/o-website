@@ -2,6 +2,11 @@
   <div class="header" :class="{ header_show: headerShow, shadow: headerShadowActive }">
     <div class="header_container">
       <div class="header_content">
+        <div class="logo-wrapper">
+          <router-link to="/">
+            <img src="@/assets/img/logo.png" alt="logo" class="logo-img">
+          </router-link>
+        </div>
         <div class="menu-wrapper">
           <div class="menu-item" v-for="(item, index) in navList" :key="index">
             <h2 class="menu-item-link">
@@ -127,14 +132,24 @@ h2 {
 
 .header_content {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   flex-direction: row;
   height: 100%;
   align-items: center;
   padding: 0 96px;
   margin: 0 auto;
 }
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
 
+  .logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+}
 .menu-wrapper {
   display: flex;
   flex-direction: row;
