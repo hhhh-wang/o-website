@@ -139,6 +139,7 @@ h2 {
   padding: 0 96px;
   margin: 0 auto;
 }
+
 .logo-wrapper {
   display: flex;
   align-items: center;
@@ -150,6 +151,7 @@ h2 {
     object-fit: contain;
   }
 }
+
 .menu-wrapper {
   display: flex;
   flex-direction: row;

@@ -1,8 +1,8 @@
 <template>
   <div class="banner">
     <div class="Limit">
-      <el-carousel :interval="5000" arrow="hover" :height="HomePage.getBannerHeight + 'px'" :autoplay="true" ref="carousel"
-        trigger="click" indicator-position="none">
+      <el-carousel :interval="5000" arrow="hover" :height="bannerHeight + 'px'" :autoplay="true" ref="carousel"
+                   trigger="click" indicator-position="none">
         <el-carousel-item v-for="item in imgList" :key="item.id">
           <div class="img_con">
             <div class="img_cover"></div>
@@ -15,7 +15,7 @@
 </template>
 <script lang="ts" setup>
 import { useHeaderStore } from '@/stores/handleHead';
-import { onBeforeMount, reactive } from 'vue';
+import { onBeforeMount, reactive, ref, onMounted, onUnmounted } from 'vue';
 type ImgItem = {
   id: number;
   imgUrl: string;
@@ -23,6 +23,22 @@ type ImgItem = {
 
 const HomePage = useHeaderStore();
 let imgList = reactive<ImgItem[]>([])
+
+const bannerHeight = ref(0);
+
+const calculateBannerHeight = () => {
+  const windowHeight = window.innerHeight;
+  bannerHeight.value = Math.floor(windowHeight * 0.66);
+};
+
+onMounted(() => {
+  calculateBannerHeight();
+  window.addEventListener('resize', calculateBannerHeight);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', calculateBannerHeight);
+});
 
 onBeforeMount(() => {
   imgList = [
@@ -50,7 +66,15 @@ onBeforeMount(() => {
 })
 </script>
 <style lang="less" scoped>
+.banner {
+  width: 100%;
+  margin: 0 auto;
+}
 
+.Limit {
+  width: 100%;
+  box-sizing: border-box;
+}
 .el-carousel__item:nth-child(2n) {
   background-color: #99a9bf;
 }
@@ -65,7 +89,7 @@ onBeforeMount(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  overflow: hidden;
   :after {
     content: "";
     position: absolute;

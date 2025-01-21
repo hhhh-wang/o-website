@@ -1,51 +1,60 @@
 <template>
     <div class="wrap-block">
-        <div class="content-blok service-block">
-            <div class="servie-block">
+        <!-- 我们能做什么 -->
+        <div class="content-block what-we-do">
+            <div class="block-header">
                 <div class="block-line"></div>
-                <p class="service-info-title">我们的服务</p>
-                <p class="service-info-subtitle">我们已定制多套解决方案，助您轻松跨入“互联网+”时代</p>
+                <h2 class="block-title">我们能做什么</h2>
+                <p class="block-subtitle">用科技创新驱动企业数字化转型</p>
+            </div>
+            <div class="capability-list">
+                <!-- 这里添加核心能力展示 -->
+            </div>
+        </div>
+
+        <!-- 服务板块优化 -->
+        <div class="content-block service-block">
+            <div class="service-content">
+                <div class="block-line"></div>
+                <h2 class="service-info-title">我们的服务</h2>
+                <p class="service-info-subtitle">专注技术创新，助力企业数字化转型</p>
                 <div class="service-list">
-                    <div class="service-title" v-for="(item, index) in serviceList" :key="index">
-                        <div class="is-hover-shadow">
-                            <div class="service-title-shadow ">
-                                <img :src="item.path" alt="">
+                    <div class="service-item" v-for="(item, index) in serviceList" :key="index">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <img :src="item.path" :alt="item.description">
                             </div>
+                            <h3 class="service-name">{{ item.description }}</h3>
+                            <p class="service-detail">{{ item.detail }}</p>
                         </div>
-                        <p class="service-name">{{ item.description }}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="content-blok service-idea">
-            <div class="service-idea">
-                <div class="idea-left">
-                    <img :src="serviceIdeaImg[0].path" :alt="serviceIdeaImg[0].name">
-                </div>
-                <div class="idea-right">
-                    <div class="block-line"></div>
-                    <p class="idea-title">{{ serviceIdeaInfo.ideaTitle }}</p>
-                    <p class="idea-subtitle">{{ serviceIdeaInfo.ideaSubTitle }}</p>
-                    <img :src="serviceIdeaImg[1].path" :alt="serviceIdeaImg[1].name">
-                    <p class="idea-desc">{{ serviceIdeaInfo.ideaDesc }}</p>
-                    <router-link to="/news">
-                        <el-button type="primary" round>了解更多</el-button>
-                    </router-link>
-                </div>
-            </div>
-        </div>
-        <div class="content-blok service-case">
-            <div class="service-case">
+
+        <!-- 案例展示优化 -->
+        <div class="content-block service-case">
+            <div class="case-content">
                 <div class="block-line"></div>
-                <p class="case-title">我们的服务</p>
-                <p class="case-subtitle">我们已定制多套解决方案，助您轻松跨入“互联网+”时代</p>
+                <h2 class="case-title">经典案例</h2>
+                <p class="case-subtitle">累计服务超过100家企业的成功案例</p>
                 <div class="case-list">
-                    <div class="case-info" v-for="(item, index) in caseList" :key="index">
-                        <el-card :body-style="{ padding: '0px' }" shadow="hover">
+                    <div class="case-item" v-for="(item, index) in caseList" :key="index">
+                        <el-card class="case-card" :body-style="{ padding: '0px' }" shadow="hover">
                             <img :src="item.path" :alt="item.desc">
+                            <div class="case-info">
+                                <h3 class="case-name">{{ item.desc }}</h3>
+                                <div class="case-tags">
+                                    <el-tag v-for="tag in item.tags" :key="tag" size="small">{{ tag }}</el-tag>
+                                </div>
+                                <el-progress 
+                                    :percentage="item.progress"
+                                    :format="format"
+                                    :stroke-width="4"
+                                    status="success">
+                                </el-progress>
+                            </div>
                         </el-card>
-                        <el-progress :percentage="50" :show-text="false"></el-progress>
-                        <p class="case-desc">{{ item.desc }}</p>
                     </div>
                 </div>
             </div>
@@ -63,54 +72,90 @@ import app1 from '@/assets/img/index/app1.jpg';
 import system1 from '@/assets/img/index/system1.jpg'
 import system2 from '@/assets/img/index/system2.jpg'
 import { onBeforeMount, onMounted, ref, reactive } from 'vue'
-// 这里演示一下如何实现复杂类型的定义，使用ts接口继承
+
 interface BaseItem {
     path: string;
 }
 interface ServiceItem extends BaseItem {
     description: string;
+    detail: string;
+    icon?: string;
 }
 interface ImgItem extends BaseItem {
     name: string;
 }
 interface CaseItem extends BaseItem {
     desc: string;
+    tags: string[];
+    progress: number;
 }
-// 其实不用这么复杂，只是演示而已
+
 type InfoData = {
     ideaTitle: string;
     ideaSubTitle: string;
     ideaDesc: string;
 }
 // const serviceList = ref<ServiceItem[]>([])
-let serviceList = reactive<ServiceItem[]>([])
+let serviceList = reactive<ServiceItem[]>([
+    {
+        description: '数据分析与挖掘',
+        detail: '运用先进的数据分析技术，帮助企业发现数据价值，优化决策流程',
+        path: bigData,
+        icon: 'data-analysis'
+    },
+    {
+        description: 'AI智能应用',
+        detail: '提供智能算法服务，包括计算机视觉、自然语言处理等解决方案',
+        path: media,
+        icon: 'ai'
+    },
+    {
+        description: '物联网解决方案',
+        detail: '打造智能硬件生态系统，实现设备互联互通，数据实时监控',
+        path: internet,
+        icon: 'iot'
+    },
+    {
+        description: '云原生架构',
+        detail: '基于云计算技术，提供高可用、可扩展的企业级解决方案',
+        path: cloud,
+        icon: 'cloud'
+    }
+])
 let serviceIdeaInfo = reactive<InfoData>({
-    ideaTitle: '服务理念',
-    ideaSubTitle: 'SERVICE IDEA',
-    ideaDesc: '专注品牌事业十余年，是一家兼具国际视野、创新动力、全方位跨平台的品牌咨询与设计整合服务公司。公司业务涉及大数据、智能多媒体、物联网。'
+    ideaTitle: '变量工坊的愿景',
+    ideaSubTitle: 'OUR VISION',
+    ideaDesc: '作为技术创新的先行者，我们致力于用科技改变生活。通过深度学习、人工智能等前沿技术，为企业提供全方位的数字化转型解决方案。我们相信，技术创新将持续推动社会进步，让生活更智能、更便捷。'
 })
 let serviceIdeaImg = reactive<ImgItem[]>([])
-let caseList = reactive<CaseItem[]>([])
+let caseList = reactive<CaseItem[]>([
+    {
+        desc: '智慧城市数据平台',
+        path: app1,
+        tags: ['大数据', 'AI', '物联网'],
+        progress: 100
+    },
+    {
+        desc: '工业生产智能监控系统',
+        path: system1,
+        tags: ['工业互联网', '实时监控'],
+        progress: 85
+    },
+    {
+        desc: '智慧医疗解决方案',
+        path: app1,
+        tags: ['AI诊断', '医疗大数据'],
+        progress: 90
+    },
+    {
+        desc: '智能供应链管理平台',
+        path: system2,
+        tags: ['供应链', '区块链'],
+        progress: 95
+    }
+])
 
 onBeforeMount(() => {
-    serviceList = [
-        {
-            description: '大数据',
-            path: bigData
-        },
-        {
-            description: '智能多媒体',
-            path: media
-        },
-        {
-            description: '互联网',
-            path: internet
-        },
-        {
-            description: '云计算',
-            path: cloud
-        }
-    ]
     serviceIdeaImg = [
         {
             name: 'lefImg',
@@ -119,24 +164,6 @@ onBeforeMount(() => {
         {
             name: 'rightImg',
             path: service2
-        }
-    ]
-    caseList = [
-        {
-            desc: '私家智能定制APP',
-            path: app1
-        },
-        {
-            desc: '公司业绩统计管理系统',
-            path: system1
-        },
-        {
-            desc: '私家智能定制APP',
-            path: app1
-        },
-        {
-            desc: '公司业绩统计管理系统',
-            path: system2
         }
     ]
 })
@@ -149,6 +176,79 @@ onBeforeMount(() => {
     .content-block {
         position: relative;
         overflow: hidden;
+    }
+
+    .block-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .service-card {
+        padding: 24px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        background: #fff;
+        height: 100%;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .service-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .service-detail {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+    }
+
+    .case-card {
+        border-radius: 8px;
+        overflow: hidden;
+
+        .case-info {
+            padding: 16px;
+
+            .case-name {
+                font-size: 16px;
+                font-weight: 600;
+                margin-bottom: 12px;
+            }
+
+            .case-tags {
+                margin-bottom: 16px;
+                
+                .el-tag {
+                    margin-right: 8px;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
     }
 }
 
