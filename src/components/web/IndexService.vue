@@ -4,7 +4,7 @@
     <div class="content-block who-we-are">
       <div class="block-header">
         <div class="block-line"></div>
-        <h2 class="block-title">我们的优势</h2>
+        <h2 class="service-info-title">我们的优势</h2>
       </div>
       <div class="feature-list">
         <div class="feature-item" v-for="(item, index) in featureList" :key="index">
@@ -23,7 +23,7 @@
     <div class="content-block what-we-do">
       <div class="block-header">
         <div class="block-line"></div>
-        <h2 class="block-title">我们的能力</h2>
+        <h2 class="service-info-title">我们的能力</h2>
       </div>
       <div class="capability-list">
         <div class="capability-item" v-for="(item, index) in capabilityList" :key="index">
@@ -43,7 +43,6 @@
       <div class="service-content">
         <div class="block-line"></div>
         <h2 class="service-info-title">我们的服务</h2>
-        <p class="service-info-subtitle">专注技术创新，助力企业数字化转型</p>
         <div class="service-list">
           <div class="service-item" v-for="(item, index) in serviceList" :key="index">
             <div class="service-card">

@@ -6,23 +6,23 @@ export interface CapabilityItem {
 
 export const capabilityList: CapabilityItem[] = [
     {
-        title: '网站建设',
-        description: '专业的网站开发团队，提供响应式设计、SEO优化等全方位服务',
+        title: '企业网站开发',
+        description: '响应式设计，SEO优化，打造专业品牌形象',
         icon: 'el-icon-monitor'
     },
     {
-        title: '小程序开发',
-        description: '微信、支付宝等多平台小程序开发，助力企业快速布局移动端',
+        title: '移动应用开发',
+        description: '原生APP、小程序、H5多端开发解决方案',
         icon: 'el-icon-mobile'
     },
     {
-        title: '谷歌插件',
-        description: '专业的Chrome扩展开发，提供个性化浏览器功能增强解决方案',
-        icon: 'el-icon-chrome'
+        title: '数据库开发',
+        description: '数据库设计、性能优化、数据迁移服务',
+        icon: 'el-icon-coin'
     },
     {
-        title: '解决方案',
-        description: '为企业提供完整的技术咨询和解决方案，助力数字化转型',
+        title: '系统集成服务',
+        description: '定制化系统开发，无缝对接现有业务',
         icon: 'el-icon-setting'
     }
-] 
+]

@@ -7,28 +7,46 @@ export interface ServiceItem {
 
 export const serviceList: ServiceItem[] = [
     {
-        description: '数据分析与挖掘',
-        detail: '运用先进的数据分析技术，帮助企业发现数据价值，优化决策流程',
+        description: '需求梳理',
+        detail: '深入分析业务需求，明确目标和范围，确保项目方向准确',
         path: 'https://cdn.jsdelivr.net/gh/hhhh-wang/MyPic@main/blog/temporarily/bigData.webp',
-        icon: 'data-analysis'
+        icon: 'requirement'
     },
     {
-        description: 'AI智能应用',
-        detail: '提供智能算法服务，包括计算机视觉、自然语言处理等解决方案',
+        description: '项目规划',
+        detail: '制定详细的项目计划，包括技术方案、资源配置和时间节点',
         path: 'https://cdn.jsdelivr.net/gh/hhhh-wang/MyPic@main/blog/temporarily/bigData.webp',
-        icon: 'ai'
+        icon: 'plan'
     },
     {
-        description: '物联网解决方案',
-        detail: '打造智能硬件生态系统，实现设备互联互通，数据实时监控',
+        description: '需求确认',
+        detail: '与客户充分沟通，确认需求文档，达成项目共识',
         path: 'https://cdn.jsdelivr.net/gh/hhhh-wang/MyPic@main/blog/temporarily/bigData.webp',
-        icon: 'iot'
+        icon: 'confirm'
     },
     {
-        description: '云原生架构',
-        detail: '基于云计算技术，提供高可用、可扩展的企业级解决方案',
+        description: 'UI设计',
+        detail: '专业的界面设计，提供美观易用的交互方案',
         path: 'https://cdn.jsdelivr.net/gh/hhhh-wang/MyPic@main/blog/temporarily/bigData.webp',
-        icon: 'cloud'
+        icon: 'design'
+    },
+    {
+        description: '编码开发',
+        detail: '采用规范的开发流程，确保代码质量和开发效率',
+        path: 'https://cdn.jsdelivr.net/gh/hhhh-wang/MyPic@main/blog/temporarily/bigData.webp',
+        icon: 'develop'
+    },
+    {
+        description: '测试部署',
+        detail: '全面的测试验证，安全稳定的系统部署',
+        path: 'https://cdn.jsdelivr.net/gh/hhhh-wang/MyPic@main/blog/temporarily/bigData.webp',
+        icon: 'test'
+    },
+    {
+        description: '售后维护',
+        detail: '持续的技术支持，定期的系统维护和优化',
+        path: 'https://cdn.jsdelivr.net/gh/hhhh-wang/MyPic@main/blog/temporarily/bigData.webp',
+        icon: 'support'
     }
 ]
 
