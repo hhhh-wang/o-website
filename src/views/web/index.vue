@@ -11,8 +11,6 @@
 import Banner from '@/components/web/Banner.vue';
 import IndexService from '@/components/web/IndexService.vue';
 import TransitionCards from '@/components/web/TransitionCards.vue';
-import OverLay from '@/components/web/overLayText.vue';
-
 import {onMounted, onUnmounted, ref} from 'vue';
 
 import {useHeaderStore} from '@/stores/handleHead';

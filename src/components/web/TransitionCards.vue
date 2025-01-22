@@ -1,41 +1,25 @@
 <template>
   <div class="transition-section">
     <div class="transition-card">
-      <div class="card-item">
-        <div class="card-icon">
-          <i class="el-icon-data-analysis"></i>
+      <template v-for="(item, index) in cardList" :key="index">
+        <div class="card-item">
+          <div class="card-icon" v-html="item.icon"></div>
+          <div class="card-content">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
         </div>
-        <div class="card-content">
-          <h3>专业技术</h3>
-          <p>十年研发经验，技术深厚</p>
-        </div>
-      </div>
-      <div class="divider"></div>
-      <div class="card-item">
-        <div class="card-icon">
-          <i class="el-icon-cpu"></i>
-        </div>
-        <div class="card-content">
-          <h3>创新思维</h3>
-          <p>紧跟技术前沿，引领创新</p>
-        </div>
-      </div>
-      <div class="divider"></div>
-      <div class="card-item">
-        <div class="card-icon">
-          <i class="el-icon-service"></i>
-        </div>
-        <div class="card-content">
-          <h3>优质服务</h3>
-          <p>全程专人对接，快速响应</p>
-        </div>
-      </div>
+        <!-- 除了最后一个元素外，都显示分隔线 -->
+        <div class="divider" v-if="index !== cardList.length - 1"></div>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// 如果需要添加props或其他逻辑可以在这里添加
+import { transitionCardList } from '@/mock/data/transitionCards';
+
+const cardList = transitionCardList;
 </script>
 
 <style lang="less" scoped>
@@ -90,6 +74,16 @@
       color: #fff;
       font-size: 24px;
       margin-right: 20px;
+
+      .icon {
+        width: 32px;
+        height: 32px;
+        transition: all 0.3s ease;
+      }
+
+      &:hover .icon {
+        transform: scale(1.1);
+      }
     }
 
     .card-content {
