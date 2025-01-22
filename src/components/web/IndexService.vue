@@ -43,14 +43,25 @@
       <div class="service-content">
         <div class="block-line"></div>
         <h2 class="service-info-title">我们的服务</h2>
-        <div class="service-list">
-          <div class="service-item" v-for="(item, index) in serviceList" :key="index">
-            <div class="service-card">
-              <div class="service-icon">
-                <img :src="item.path" :alt="item.description">
+        <div class="service-timeline">
+          <div class="timeline-track">
+            <div class="progress-line"></div>
+          </div>
+          <div class="service-list">
+            <div class="service-item" v-for="(item, index) in serviceList" :key="index">
+              <div class="service-step">
+                <div class="step-number">{{ index + 1 }}</div>
+                <div class="step-line"></div>
               </div>
-              <h3 class="service-name">{{ item.description }}</h3>
-              <p class="service-detail">{{ item.detail }}</p>
+              <div class="service-card">
+                <div class="service-icon">
+                  <div class="icon-circle">
+                    <i :class="item.icon"></i>
+                  </div>
+                </div>
+                <h3 class="service-name">{{ item.description }}</h3>
+                <p class="service-detail">{{ item.detail }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -206,64 +217,150 @@ onBeforeMount(() => {
 }
 
 .service-block {
-  max-width: 1440px;
-  height: 500px;
-  margin: 0 auto;
-  text-align: center;
-  overflow-x: hidden;
-
-  .block-line {
-    margin: 0 auto 12px;
-    width: 24px;
-    height: 4px;
-    background-color: #3370ff;
-    border-radius: 100px;
+  padding: 80px 0;
+  background: #fff;
+  
+  .service-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
   }
 
-  .service-info-title {
-    font-weight: 700;
-    font-size: 32px;
+  .service-timeline {
     position: relative;
-    bottom: 2px;
-    //padding-top: 60px;
+    margin-top: 60px;
+    padding: 40px 0;
   }
 
-  .service-info-subtitle {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #646a73;
-    margin-top: 30px;
+  .timeline-track {
+    position: absolute;
+    top: 120px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    
+    .progress-line {
+      height: 100%;
+      background: linear-gradient(90deg, #3370ff 0%, #6695ff 100%);
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background: #6695ff;
+        border-radius: 50%;
+      }
+    }
   }
 
   .service-list {
+    position: relative;
     display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-    margin: 70px auto 0 auto;
+    justify-content: space-between;
+    gap: 20px;
   }
 
-  .service-title-shadow {
-    width: 111px;
-    height: 111px;
-    border-radius: 50%;
+  .service-item {
+    flex: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    transition: .3s;
+    position: relative;
   }
 
-  .service-title-shadow:hover {
-    width: 111px;
-    height: 111px;
-    border-radius: 50%;
-    transform: scale(1.05) translateY(-1px);
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, .15);
+  .service-step {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: #3370ff;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-line {
+      width: 2px;
+      height: 40px;
+      background: #3370ff;
+    }
   }
 
-  .service-name {
-    margin-top: 30px;
-    font-weight: 600;
-    font-size: 20px;
+  .service-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      margin-bottom: 16px;
+
+      .icon-circle {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3370ff, #6695ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+      }
+    }
+
+    .service-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+    }
+
+    .service-detail {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .service-list {
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .timeline-track {
+      display: none;
+    }
+
+    .service-step {
+      height: 60px;
+    }
   }
 }
 
