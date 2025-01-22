@@ -49,7 +49,7 @@
         <div class="capability-item" v-for="(item, index) in capabilityList" :key="index">
           <div class="capability-card">
             <div class="capability-icon">
-              <div class="icon-circle"></div>
+              <div class="icon-circle" v-html="item.icon"></div>
             </div>
             <h3 class="capability-title">{{ item.title }}</h3>
             <p class="capability-desc">{{ item.description }}</p>
@@ -412,11 +412,6 @@ const submitConsult = () => {
     &:hover {
       transform: translateY(-10px);
       box-shadow: 0 20px 40px rgba(51, 112, 255, 0.1);
-
-      .icon-circle {
-        background: linear-gradient(135deg, #3370ff, #66a3ff);
-        color: #fff;
-      }
     }
 
     .capability-icon {
@@ -432,10 +427,21 @@ const submitConsult = () => {
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-        color: #3370ff;
 
-        i {
-          font-size: 32px;
+        svg {
+          width: 40px;
+          height: 40px;
+          transition: all 0.3s ease;
+        }
+
+        &:hover {
+          background: #fff;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(51, 112, 255, 0.1);
+          
+          svg {
+            transform: scale(1.1);
+          }
         }
       }
     }
