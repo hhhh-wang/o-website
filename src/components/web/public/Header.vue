@@ -75,12 +75,13 @@ let navList = reactive([
     path: '/login'
   }
 ]);
+
 watchEffect(() => {
   let listener_login_token = userStore.isLogin;
   if (listener_login_token) {
-    navList[4].title = '';
+    navList[navList.length - 1].title = '';
   } else {
-    navList[4].title = '登录';
+    navList[navList.length - 1].title = '登录';
   }
 })
 
