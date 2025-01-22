@@ -77,25 +77,33 @@
           </div>
         </div>
         <div class="service-timeline">
-          <div class="timeline-track">
-            <div class="progress-line"></div>
-          </div>
           <div class="service-list">
-            <div class="service-item" v-for="(item, index) in serviceList" :key="index">
-              <div class="service-step">
-                <div class="step-number">{{ index + 1 }}</div>
-                <div class="step-line"></div>
-              </div>
-              <div class="service-card">
-                <div class="service-icon">
-                  <div class="icon-circle">
-                    <i :class="item.icon"></i>
+            <template v-for="(item, index) in serviceList" :key="index">
+              <div class="service-item">
+                <div class="service-card">
+                  <div class="service-icon">
+                    <div class="icon-circle" v-html="item.icon"></div>
                   </div>
+                  <h3 class="service-name">{{ item.description }}</h3>
+                  <p class="service-detail">{{ item.detail }}</p>
                 </div>
-                <h3 class="service-name">{{ item.description }}</h3>
-                <p class="service-detail">{{ item.detail }}</p>
               </div>
-            </div>
+              <!-- 除了最后一个元素外，都显示箭头 -->
+              <div v-if="index !== serviceList.length - 1" class="arrow-divider">
+                <svg viewBox="0 0 24 24" class="arrow-icon">
+                  <defs>
+                    <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#3370ff"/>
+                      <stop offset="100%" style="stop-color:#66a3ff"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" fill="url(#arrowGradient)"/>
+                </svg>
+                <svg viewBox="0 0 24 24" class="arrow-icon">
+                  <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" fill="url(#arrowGradient)"/>
+                </svg>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -465,75 +473,113 @@ const submitConsult = () => {
   // 服务流程
   .service-timeline {
     position: relative;
-    padding-top: 40px;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 100px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: #e6eeff;
-    }
+    padding: 60px 0;
 
     .service-list {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 20px;
-      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
     }
 
     .service-item {
+      flex: 1;
+      max-width: 260px;
       text-align: center;
+    }
 
-      .service-step {
-        margin-bottom: 30px;
-        position: relative;
+    .arrow-divider {
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+      margin-top: -30px; // 向上偏移，与卡片对齐
+      
+      .arrow-icon {
+        width: 20px;
+        height: 20px;
+        transition: all 0.3s ease;
 
-        .step-number {
-          width: 50px;
-          height: 50px;
-          margin: 0 auto;
-          background: linear-gradient(135deg, #3370ff, #66a3ff);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 20px;
-          font-weight: 600;
-          color: #fff;
-          box-shadow: 0 4px 15px rgba(51, 112, 255, 0.2);
-          position: relative;
-          z-index: 1;
+        &:first-child {
+          margin-right: -8px; // 让两个箭头靠得更近
+        }
+
+        &:last-child {
+          margin-left: -8px;
         }
       }
 
-      .service-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 30px 20px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-
-        &:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(51, 112, 255, 0.1);
+      &:hover {
+        .arrow-icon {
+          transform: translateX(3px);
+          
+          &:first-child {
+            transform: translateX(2px);
+          }
+          &:last-child {
+            transform: translateX(4px);
+          }
         }
+      }
+    }
 
-        .service-name {
-          font-size: 18px;
-          font-weight: 600;
-          color: #1a1a1a;
-          margin-bottom: 10px;
+    .service-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px 20px;
+      height: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+      .service-icon {
+        margin-bottom: 20px;
+
+        .icon-circle {
+          width: 64px;
+          height: 64px;
+          margin: 0 auto;
+          border-radius: 16px;
+          background: #f5f7ff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+
+          svg {
+            width: 32px;
+            height: 32px;
+            color: #3370ff;
+            transition: all 0.3s ease;
+          }
         }
+      }
 
-        .service-detail {
-          font-size: 14px;
-          color: #666;
-          line-height: 1.6;
+      .service-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+      }
+
+      .service-detail {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 30px rgba(51, 112, 255, 0.1);
+
+        .icon-circle {
+          background: linear-gradient(135deg, #3370ff, #66a3ff);
+          
+          svg {
+            color: #fff;
+            transform: scale(1.1);
+          }
         }
       }
     }
