@@ -139,12 +139,14 @@ h2 {
   align-items: center;
   padding: 0 96px;
   margin: 0 auto;
+  max-width: 1440px;
 }
 
 .logo-wrapper {
   display: flex;
   align-items: center;
   height: 100%;
+  flex: 0 0 auto;
 
   .logo-img {
     height: 40px;
@@ -157,11 +159,12 @@ h2 {
   display: flex;
   flex-direction: row;
   list-style: none;
-  -ms-flex-align: center;
   align-items: center;
   padding: 0;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 80px;
   position: relative;
+  flex: 1;
+  justify-content: flex-end;
 
   .menu-item {
     flex-shrink: 0;
@@ -179,13 +182,13 @@ h2 {
   }
 
   > .menu-item + .menu-item {
-    margin-left: 40px;
+    margin-left: 100px;
   }
 
   .menu-item-link {
     //color: #646a73;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 60px;
     cursor: pointer;
     position: relative;
@@ -210,10 +213,13 @@ h2 {
         display: block;
         height: 2px;
         position: absolute;
-        width: 26px;
-        left: calc(50% - 13px);
+        width: 100%;
+        min-width: 40px;
+        left: 50%;
+        transform: translateX(-50%);
         bottom: 14px;
         background-color: @nav_active_color;
+        transition: all 0.3s ease;
       }
     }
   }
@@ -227,9 +233,34 @@ h2 {
   color: rgba(0, 0, 0, .8);
 }
 
+@media only screen and (max-width: 1440px) {
+  .menu-wrapper {
+    margin: 0 0 0 60px;
+    > .menu-item + .menu-item {
+      margin-left: 48px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .menu-wrapper {
+    margin: 0 0 0 40px;
+    > .menu-item + .menu-item {
+      margin-left: 40px;
+    }
+  }
+}
+
 @media only screen and (max-width: 991px) {
   .header_content {
     padding: 0 32px;
+  }
+  
+  .menu-wrapper {
+    margin: 0 0 0 30px;
+    > .menu-item + .menu-item {
+      margin-left: 32px;
+    }
   }
 }
 </style>
