@@ -61,25 +61,29 @@
     <div class="content-block service-case">
       <div class="case-content">
         <div class="block-line"></div>
-        <h2 class="case-title">经典案例</h2>
+        <h2 class="service-info-title">经典案例</h2>
         <p class="case-subtitle">累计服务超过100家企业的成功案例</p>
         <div class="case-list">
           <div class="case-item" v-for="(item, index) in caseList" :key="index">
-            <el-card class="case-card" :body-style="{ padding: '0px' }" shadow="hover">
-              <img :src="item.path" :alt="item.desc">
+            <div class="case-card">
+              <div class="case-image">
+                <img :src="item.path" :alt="item.desc">
+                <div class="case-overlay">
+                  <div class="case-tags">
+                    <span class="tag" v-for="tag in item.tags" :key="tag">{{ tag }}</span>
+                  </div>
+                </div>
+              </div>
               <div class="case-info">
                 <h3 class="case-name">{{ item.desc }}</h3>
-                <div class="case-tags">
-                  <el-tag v-for="tag in item.tags" :key="tag" size="small">{{ tag }}</el-tag>
+                <div class="case-progress">
+                  <div class="progress-bar">
+                    <div class="progress-inner" :style="{ width: item.progress + '%' }"></div>
+                  </div>
+                  <span class="progress-text">完成度 {{ item.progress }}%</span>
                 </div>
-                <el-progress
-                    :percentage="item.progress"
-                    :format="format"
-                    :stroke-width="4"
-                    status="success">
-                </el-progress>
               </div>
-            </el-card>
+            </div>
           </div>
         </div>
       </div>
@@ -335,64 +339,113 @@ onBeforeMount(() => {
 }
 
 .service-case {
-  background-color: #FFFFFF;
-  width: 100%;
+  padding: 80px 0;
+  background: #f8f9fa;
 
-  .service-case {
-    max-width: 1440px;
-    //height: 700px;
-    overflow: hidden;
+  .case-content {
+    max-width: 1200px;
     margin: 0 auto;
-    text-align: center;
-    padding-top: 50px;
+    padding: 0 20px;
+  }
 
-    .block-line {
-      margin: 0 auto 12px;
-      width: 24px;
-      height: 4px;
-      background-color: #3370ff;
-      border-radius: 100px;
+  .case-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .case-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+
+      .case-overlay {
+        opacity: 1;
+      }
+    }
+  }
+
+  .case-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
     }
 
-    .case-title {
-      font-weight: 700;
-      font-size: 32px;
-      position: relative;
-      bottom: 2px;
-      //padding-top: 60px;
-    }
-
-    .case-subtitle {
-      font-size: 16px;
-      line-height: 1.5;
-      color: #646a73;
-      margin-top: 10px;
-    }
-
-    .case-list {
+    .case-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(51, 112, 255, 0.9);
       display: flex;
-      justify-content: space-evenly;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    .el-card {
-      width: 247px;
-      height: 217px;
-      margin-top: 40px;
+    .case-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 20px;
+      justify-content: center;
+
+      .tag {
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        border-radius: 20px;
+        font-size: 12px;
+        backdrop-filter: blur(4px);
+      }
+    }
+  }
+
+  .case-info {
+    padding: 20px;
+
+    .case-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 16px;
     }
 
-    .el-progress {
-      margin-top: 10px;
-    }
+    .case-progress {
+      .progress-bar {
+        height: 4px;
+        background: #eee;
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 8px;
 
-    :deep(.el-progress-bar__outer) {
-      height: 2px !important;
-    }
+        .progress-inner {
+          height: 100%;
+          background: linear-gradient(90deg, #3370ff, #6695ff);
+          border-radius: 2px;
+          transition: width 0.3s ease;
+        }
+      }
 
-    .case-desc {
-      margin-top: 30px;
-      margin-bottom: 60px;
-      font-weight: 500;
-      font-size: 14px;
+      .progress-text {
+        font-size: 14px;
+        color: #666;
+      }
     }
   }
 }
