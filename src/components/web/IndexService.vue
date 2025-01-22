@@ -12,7 +12,8 @@
                 <stop offset="100%" style="stop-color:#66a3ff"/>
               </linearGradient>
             </defs>
-            <path fill="url(#advantageGradient)" d="M768 128H256c-35.3 0-64 28.7-64 64v512c0 35.3 28.7 64 64 64h512c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64zm0 544c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32h448c17.7 0 32 14.3 32 32v448zM384 768h256v64H384v-64z"/>
+            <path fill="url(#advantageGradient)"
+                  d="M768 128H256c-35.3 0-64 28.7-64 64v512c0 35.3 28.7 64 64 64h512c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64zm0 544c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32h448c17.7 0 32 14.3 32 32v448zM384 768h256v64H384v-64z"/>
           </svg>
           <h2 class="service-info-title">我们的优势</h2>
         </div>
@@ -40,7 +41,8 @@
                 <stop offset="100%" style="stop-color:#66a3ff"/>
               </linearGradient>
             </defs>
-            <path fill="url(#capabilityGradient)" d="M832 160H192c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H232V232h560v560zM368 624h48V432h-48v192zm144 0h48V336h-48v288zm144 0h48V528h-48v96z"/>
+            <path fill="url(#capabilityGradient)"
+                  d="M832 160H192c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H232V232h560v560zM368 624h48V432h-48v192zm144 0h48V336h-48v288zm144 0h48V528h-48v96z"/>
           </svg>
           <h2 class="service-info-title">我们的能力</h2>
         </div>
@@ -58,7 +60,7 @@
       </div>
     </div>
 
-    <!-- 服务板块优化 -->
+    <!-- 服务板块 -->
     <div class="content-block service-block">
       <div class="service-content">
         <div class="block-header">
@@ -71,7 +73,8 @@
                   <stop offset="100%" style="stop-color:#66a3ff"/>
                 </linearGradient>
               </defs>
-              <path fill="url(#serviceGradient)" d="M832 192H192c-35.3 0-64 28.7-64 64v512c0 35.3 28.7 64 64 64h640c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64zm0 64v96H192v-96h640zM192 768v-352h640v352H192zm128-448c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+              <path fill="url(#serviceGradient)"
+                    d="M832 192H192c-35.3 0-64 28.7-64 64v512c0 35.3 28.7 64 64 64h640c35.3 0 64-28.7 64-64V256c0-35.3-28.7-64-64-64zm0 64v96H192v-96h640zM192 768v-352h640v352H192zm128-448c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
             </svg>
             <h2 class="service-info-title">我们的服务</h2>
           </div>
@@ -120,8 +123,8 @@
         <div class="case-container">
           <!-- 左侧导航 -->
           <div class="case-nav">
-            <div class="nav-item" 
-                 v-for="(item, index) in caseCategories" 
+            <div class="nav-item"
+                 v-for="(item, index) in caseCategories"
                  :key="index"
                  :class="{ active: currentCase === index }"
                  @click="switchCase(index)">
@@ -134,14 +137,14 @@
               </div>
             </div>
           </div>
-          
+
           <!-- 右侧内容 -->
           <div class="case-detail">
             <div class="detail-header">
               <h2 class="detail-title">{{ currentCaseData.title }}</h2>
               <div class="detail-background">
                 <h3>行业背景</h3>
-                <p v-for="(bg, index) in currentCaseData.background" 
+                <p v-for="(bg, index) in currentCaseData.background"
                    :key="index">{{ bg }}</p>
               </div>
               <div class="detail-actions">
@@ -152,8 +155,8 @@
             <div class="detail-examples">
               <h3>相关客户案例</h3>
               <div class="example-grid">
-                <div class="example-item" 
-                     v-for="(example, index) in currentCaseData.examples" 
+                <div class="example-item"
+                     v-for="(example, index) in currentCaseData.examples"
                      :key="index">
                   <img :src="example.image" :alt="example.title">
                   <div class="example-info">
@@ -239,7 +242,7 @@ const submitConsult = () => {
     alert('请输入手机号码')
     return
   }
-  
+
   // 这里添加手机号码验证逻辑
   const phoneReg = /^1[3-9]\d{9}$/
   if (!phoneReg.test(consultForm.phone)) {
@@ -276,8 +279,8 @@ const submitConsult = () => {
   // 通用区块样式
   .content-block {
     position: relative;
-    padding: 100px 0;
-    
+    padding: 60px 0;
+
     &:nth-child(even) {
       background: #f8faff;
     }
@@ -286,7 +289,7 @@ const submitConsult = () => {
   // 统一的标题样式
   .block-header, .case-header, .service-content {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
 
     .block-line {
       width: 40px;
@@ -333,6 +336,9 @@ const submitConsult = () => {
 
   // 我们的优势
   .who-we-are {
+    padding-top: 60px;
+    padding-bottom: 40px;
+
     .feature-list {
       max-width: 1200px;
       margin: 0 auto;
@@ -356,7 +362,7 @@ const submitConsult = () => {
         .feature-icon {
           transform: scale(1.1);
           background: #fff;
-          
+
           svg {
             color: #3370ff;
           }
@@ -446,7 +452,7 @@ const submitConsult = () => {
           background: #fff;
           transform: translateY(-2px);
           box-shadow: 0 8px 25px rgba(51, 112, 255, 0.1);
-          
+
           svg {
             transform: scale(1.1);
           }
@@ -473,7 +479,7 @@ const submitConsult = () => {
   // 服务流程
   .service-timeline {
     position: relative;
-    padding: 60px 0;
+    padding: 30px 0;
 
     .service-list {
       max-width: 1400px;
@@ -496,7 +502,7 @@ const submitConsult = () => {
       align-items: center;
       padding: 0 5px;
       margin-top: -30px; // 向上偏移，与卡片对齐
-      
+
       .arrow-icon {
         width: 20px;
         height: 20px;
@@ -514,10 +520,11 @@ const submitConsult = () => {
       &:hover {
         .arrow-icon {
           transform: translateX(3px);
-          
+
           &:first-child {
             transform: translateX(2px);
           }
+
           &:last-child {
             transform: translateX(4px);
           }
@@ -575,7 +582,7 @@ const submitConsult = () => {
 
         .icon-circle {
           background: linear-gradient(135deg, #3370ff, #66a3ff);
-          
+
           svg {
             color: #fff;
             transform: scale(1.1);
@@ -762,6 +769,17 @@ const submitConsult = () => {
       }
     }
   }
+
+  // 服务板块
+  .service-block {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  // 案例展示保持原有间距
+  .service-case {
+    padding-top: 100px;
+  }
 }
 
 .feature-icon {
@@ -773,7 +791,7 @@ const submitConsult = () => {
 
   &:hover {
     background: #fff;
-    
+
     svg {
       transform: scale(1.1);
     }
